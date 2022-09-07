@@ -2,7 +2,7 @@
 session_start();
 
 //membuat koneksi ke database
-$conn = mysqli_connect("localhost", "root", "", "magang");
+$conn = mysqli_connect("localhost", "root", "", "magang1");
 
 //nambah barang
 if(isset($_POST['tambahdata'])){
@@ -18,6 +18,6 @@ if(isset($_POST['tambahdata'])){
         echo 'Gagal';
         header('location:index.php');
     }
-}
 
+}
 ?>
