@@ -1,4 +1,29 @@
 //REGISTER
+<?php
+require 'function.php';
+
+//daftar
+if(isset($_POST['register'])){
+    $namalengkap = $_POST["namalengkap"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    $query_sql = "INSERT INTO user (namalengkap, email, password) 
+                VALUES ('$namalengkap','$email', '$password')";
+
+    if(mysqli_query($conn, $query_sql)) {
+        //jika berhasil
+        header('location:login.php'); //redirect login
+    } else {
+        //jika gagal
+        echo '
+        <script> 
+        alert("Registrasi gagal");
+        window.location.href="register.php";
+        </script>
+        ' . mysqli_error($conn);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
