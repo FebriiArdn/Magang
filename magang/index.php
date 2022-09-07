@@ -132,8 +132,8 @@ require 'cek.php';
 
                                             <?php
                                             $ambilsemuadata = mysqli_query($conn,"select * from laporan");
+                                            $i = 1;
                                             while($data=mysqli_fetch_array($ambilsemuadata)){
-                                                $i = 1;
                                                 $nama_pos = $data['nama_pos'];
                                                 $jenis_pos = $data['jenis_pos'];
                                                 $lokasi_pos = $data['lokasi_pos'];
