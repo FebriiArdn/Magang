@@ -7,7 +7,7 @@ if(isset($_POST['login'])){
     $password = $_POST['password'];
 
     //cocokin dengan database, carii
-    $cekdatabase = mysqli_query($conn,"SELECT * FROM login where email='$email' and password = '$password'");
+    $cekdatabase = mysqli_query($conn,"SELECT * FROM user where email='$email' and password = '$password'");
     //hitung jumlah data
     $hitung = mysqli_num_rows($cekdatabase);
 
@@ -15,7 +15,12 @@ if(isset($_POST['login'])){
         $_SESSION['log'] = 'True';
         header('location:index.php');
     } else {
-        header('location:login.php');
+        echo '
+        <script> 
+        alert("Email / Password salah");
+        window.location.href="login.php";
+        </script>
+        ';
     };
 };
 
@@ -58,15 +63,32 @@ if(!isset($_SESSION['log'])){
                                             </div>
                                             <div class="form-group">
                                             </div>
-                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <button class="btn btn-primary"  name="login" >Login</button>
-                                        <div class="small"><a href="register.php">Belum punya akun? Sign Up</a></div>
+                                            </div>
+                                            
+                                    <div class="card-footer text-center">
+                                        <div class="small"><a href="register.php">Need an account? Sign up!</a></div>
                                     </div>
+                                        </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </main>
+            </div>
+            <div id="layoutAuthentication_footer">
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
