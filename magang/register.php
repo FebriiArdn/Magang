@@ -1,21 +1,35 @@
 <?php
 require 'function.php';
 
-//register akun
-if(isset($_POST['tambahakun'])){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+//daftar
+if(isset($_POST['register'])){
+    $namalengkap = $_POST["namalengkap"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
 
-    $tambahakun = mysqli_query($conn, "INSERT INTO login('email', 'password') VALUES ('$email', '$password')");
-    if($tambahakun){
-        header('location:login.php');
+    $query_sql = "INSERT INTO user (namalengkap, email, password) 
+                VALUES ('$namalengkap','$email', '$password')";
+
+    if(mysqli_query($conn, $query_sql)) {
+        //jika berhasil
+        echo '
+        <script> 
+        alert("Registrasi Berhasil");
+        window.location.href="login.php";
+        </script>
+        ';
     } else {
-        echo 'Gagal';
-        header('location:register.php');
+        //jika gagal
+        echo '
+        <script> 
+        alert("Registrasi gagal");
+        window.location.href="register.php";
+        </script>
+        ' . mysqli_error($conn);
     }
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -38,16 +52,20 @@ if(isset($_POST['tambahakun'])){
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
                                     <div class="card-body">
-                                        <form>
+                                        <form action="register.php" method="post">
+                                        <div class="form-group">
+                                                <label class="small mb-1" for="inputnamalengkap">Nama Lengkap</label>
+                                                <input class="form-control py-4" id="inputnamalengkap" name="namalengkap" type="namalengkap" aria-describedby="namalengkap" placeholder="Masukkan Nama Lengkap" />
+                                            </div>
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputEmailAddress">Email</label>
-                                                <input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Enter email address" />
+                                                <input class="form-control py-4" id="inputEmailAddress" name="email" type="email" aria-describedby="emailHelp" placeholder="Enter email address" />
                                             </div>
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputPassword">Password</label>
-                                                        <input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" />
+                                                        <input class="form-control py-4" id="inputPassword" name="password" type="password" placeholder="Enter password" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -58,7 +76,7 @@ if(isset($_POST['tambahakun'])){
                                                 </div>
                                             </div>
                                             <div class="form-group mt-4 mb-0">
-                                                <button class="btn btn-primary btn-block" name="register">Buat Akun</button>
+                                            <button type="submit" name="register" class="btn btn-primary btn-block" href="login.php">Buat</button>
                                             </div>
                                         </form>
                                     </div>
