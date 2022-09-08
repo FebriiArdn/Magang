@@ -95,3 +95,5 @@ if(isset($_POST['register'])){
         <script src="js/scripts.js"></script>
     </body>
 </html>
+
+//slash
