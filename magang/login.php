@@ -1,13 +1,12 @@
 <?php
 require 'function.php';
-
 //cek login, terdaftar apa ga
 if(isset($_POST['login'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     //cocokin dengan database, carii
-    $cekdatabase = mysqli_query($conn,"SELECT * FROM login where email='$email' and password = '$password'");
+    $cekdatabase = mysqli_query($conn,"SELECT * FROM user where email='$email' and password = '$password'");
     //hitung jumlah data
     $hitung = mysqli_num_rows($cekdatabase);
 
@@ -15,16 +14,16 @@ if(isset($_POST['login'])){
         $_SESSION['log'] = 'True';
         header('location:index.php');
     } else {
-        header('location:login.php');
-    };
-};
-
-if(!isset($_SESSION['log'])){
-} else {
-    header('location:index.php');
+        echo '
+        <script> 
+        alert("Email / Password salah");
+        window.location.href="login.php";
+        </script>
+        ';
+    }
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
