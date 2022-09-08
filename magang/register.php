@@ -1,31 +1,25 @@
 <?php
 require 'function.php';
+//cek login, terdaftar apa ga
+if(isset($_POST['login'])){
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-//daftar
-if(isset($_POST['register'])){
-    $namalengkap = $_POST["namalengkap"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+    //cocokin dengan database, carii
+    $cekdatabase = mysqli_query($conn,"SELECT * FROM user where email='$email' and password = '$password'");
+    //hitung jumlah data
+    $hitung = mysqli_num_rows($cekdatabase);
 
-    $query_sql = "INSERT INTO user (namalengkap, email, password) 
-                VALUES ('$namalengkap','$email', '$password')";
-
-    if(mysqli_query($conn, $query_sql)) {
-        //jika berhasil
+    if($hitung>0){
+        $_SESSION['log'] = 'True';
+        header('location:index.php');
+    } else {
         echo '
         <script> 
-        alert("Registrasi Berhasil");
+        alert("Email / Password salah");
         window.location.href="login.php";
         </script>
         ';
-    } else {
-        //jika gagal
-        echo '
-        <script> 
-        alert("Registrasi gagal");
-        window.location.href="register.php";
-        </script>
-        ' . mysqli_error($conn);
     }
 }
 ?>
@@ -48,40 +42,24 @@ if(isset($_POST['register'])){
                 <main>
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-lg-7">
+                            <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                                     <div class="card-body">
-                                        <form action="register.php" method="post">
-                                        <div class="form-group">
-                                                <label class="small mb-1" for="inputnamalengkap">Nama Lengkap</label>
-                                                <input class="form-control py-4" id="inputnamalengkap" name="namalengkap" type="namalengkap" aria-describedby="namalengkap" placeholder="Masukkan Nama Lengkap" />
-                                            </div>
+                                        <form method="post">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputEmailAddress">Email</label>
-                                                <input class="form-control py-4" id="inputEmailAddress" name="email" type="email" aria-describedby="emailHelp" placeholder="Enter email address" />
+                                                <input class="form-control py-4" name="email" id="inputEmailAddress" type="email" placeholder="Enter email address" />
                                             </div>
-                                            <div class="form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="small mb-1" for="inputPassword">Password</label>
-                                                        <input class="form-control py-4" id="inputPassword" name="password" type="password" placeholder="Enter password" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="small mb-1" for="inputConfirmPassword">Confirm Password</label>
-                                                        <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirm password" />
-                                                    </div>
-                                                </div>
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputPassword">Password</label>
+                                                <input class="form-control py-4" name="password" id="inputPassword" type="password" placeholder="Enter password" />
                                             </div>
-                                            <div class="form-group mt-4 mb-0">
-                                            <button type="submit" name="register" class="btn btn-primary btn-block" href="login.php">Buat</button>
+                                            <div class="form-group">
                                             </div>
-                                        </form>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <div class="small"><a href="login.php">Sudah punya akun? Login</a></div>
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                <button class="btn btn-primary"  name="login" >Login</button>
+                                        <div class="small"><a href="register.php">Belum punya akun? Sign Up</a></div>
                                     </div>
                                 </div>
                             </div>
