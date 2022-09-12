@@ -165,7 +165,7 @@ require 'cek.php';
                                                 
                                                     <!-- Modal Header -->
                                                     <div class="modal-header">
-                                                    <h4 class="modal-title">Edit Data</h4>
+                                                    <h4 class="modal-title">Edit data</h4>
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     </div>
                                                     
@@ -179,12 +179,11 @@ require 'cek.php';
                                                     
                                                     <input type="text" name="lokasi_pos" value="<?=$lokasi_pos;?>" class="form-control" required>
                                                     <br>
-                                                    <input type="text" name="proggres" value="<?=$proggres;?>" class="form-control" required>
+                                                    <input type="text" name="proggres" value="<?=$proggres;?>" class="form-control">
                                                     <br>
                                                     <input type="hidden" name="idp" value="<?=$idp;?>">
                                                     <button type="submit" class="btn btn-primary" name="updatedata">Update</button> 
                                                     </div>
-                                                    </form>
                                                     
                                                 </div>
                                                 </div>
@@ -205,7 +204,7 @@ require 'cek.php';
                                                     <form method="post">
                                                     <div class="modal-body">
                                                     Apakah Anda yakin ingin menghapus data Pos <?=$nama_pos;?>?
-                                                    <input type="hidden" name="id_pos" value="<?=$idp;?>">
+                                                    <input type="hidden" name="idp" value="<?=$idp;?>">
                                                     <br>
                                                     <br>
 
