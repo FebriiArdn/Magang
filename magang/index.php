@@ -181,6 +181,7 @@ require 'cek.php';
                                                     <br>
                                                     <input type="text" name="proggres" value="<?=$proggres;?>" class="form-control">
                                                     <br>
+                                                    <input type="hidden" name="id_pos" value="<?=$id_pos;?>">
                                                     <button type="submit" class="btn btn-primary" name="update">Update</button> 
                                                     </div>
                                                     
