@@ -17,7 +17,7 @@ require 'cek.php';
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">BBWS Pemali Juana</a>
+            <a class="navbar-brand" href="index.php">BBWS Pemali Juana</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -139,9 +139,8 @@ require 'cek.php';
                                                 $jenis_pos = $data['jenis_pos'];
                                                 $lokasi_pos = $data['lokasi_pos'];
                                                 $proggres = $data['proggres'];
-                                                $id_pos = $data['id_pos'];
+                                                $idp = $data['id_pos'];
                                             ?>
-
                                             <tr>
                                                 <td><?=$i++;?></td>
                                                 <td><?=$nama_pos;?></td>
@@ -149,24 +148,24 @@ require 'cek.php';
                                                 <td><?=$lokasi_pos;?></td>
                                                 <td><?=$proggres;?></td>
                                                 <td>
-                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?=$id_pos;?>">
+                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?=$idp;?>">
                                                         Edit
                                                     </button>
-                                                    <input type="hidden" name="idposdihapus" value="<?=$id_pos;?>">
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?=$id_pos;?>">
+                                                    <input type="hidden" name="idposdihapus" value="<?=$idp;?>">
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?=$idp;?>">
                                                         Delete
                                                     </button>
                                                 </td>
                                             </tr>
 
                                             <!-- Edit Modal -->
-                                            <div class="modal fade" id="edit<?=$id_pos;?>">
+                                            <div class="modal fade" id="edit<?=$idp;?>">
                                                 <div class="modal-dialog">
                                                 <div class="modal-content">
                                                 
                                                     <!-- Modal Header -->
                                                     <div class="modal-header">
-                                                    <h4 class="modal-title">Edit data</h4>
+                                                    <h4 class="modal-title">Edit Data</h4>
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     </div>
                                                     
@@ -177,20 +176,22 @@ require 'cek.php';
                                                     <br>
                                                     <input type="text" name="jenis_pos" value="<?=$jenis_pos;?>" class="form-control" required>
                                                     <br>
+                                                    
                                                     <input type="text" name="lokasi_pos" value="<?=$lokasi_pos;?>" class="form-control" required>
                                                     <br>
-                                                    <input type="text" name="proggres" value="<?=$proggres;?>" class="form-control">
+                                                    <input type="text" name="proggres" value="<?=$proggres;?>" class="form-control" required>
                                                     <br>
-                                                    <input type="hidden" name="id_pos" value="<?=$id_pos;?>">
-                                                    <button type="submit" class="btn btn-primary" name="update">Update</button> 
+                                                    <input type="hidden" name="idp" value="<?=$idp;?>">
+                                                    <button type="submit" class="btn btn-primary" name="updatedata">Update</button> 
                                                     </div>
+                                                    </form>
                                                     
                                                 </div>
                                                 </div>
                                             </div>
 
                                             <!-- Delete Modal -->
-                                            <div class="modal fade" id="delete<?=$id_pos;?>">
+                                            <div class="modal fade" id="delete<?=$idp;?>">
                                                 <div class="modal-dialog">
                                                 <div class="modal-content">
                                                 
@@ -203,12 +204,14 @@ require 'cek.php';
                                                     <!-- Modal body -->
                                                     <form method="post">
                                                     <div class="modal-body">
-                                                    Apakah Anda yakin ingin menghapus data?
+                                                    Apakah Anda yakin ingin menghapus data Pos <?=$nama_pos;?>?
+                                                    <input type="hidden" name="id_pos" value="<?=$idp;?>">
                                                     <br>
                                                     <br>
-                        
-                                                    <button type="submit" class="btn btn-danger" name="delete">Hapus</button> 
+
+                                                    <button type="submit" class="btn btn-danger" name="hapusdata">Hapus</button> 
                                                     </div>
+                                                    </form>
                                                     
                                                 </div>
                                                 </div>
@@ -274,8 +277,9 @@ require 'cek.php';
             <br>
             <input type='text' name='proggres' placeholder="Proggres" class="form-control">
             <br>
-            <button type="submit" class="btn btn-primary" name="tambahdata">Submit</button> 
+            <button type="submit" class="btn btn-primary" name="addnewlap">Submit</button> 
             </div>
+            </form>
             
             <!-- Modal footer -->
             <div class="modal-footer">
