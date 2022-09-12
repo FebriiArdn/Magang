@@ -38,10 +38,10 @@ if(isset($_POST['updatedata'])){
 }
 
 //menghapus
-if(isset($_POST['hapusbarang'])){
-    $id_pos = $_POST('id_pos');
+if(isset($_POST['hapusdata'])){
+    $idp = $_POST['idp'];
 
-    $hapus = mysqli_query($conn, "delete from laporan where id_pos = '$id_pos'");
+    $hapus = mysqli_query($conn, "delete from laporan where id_pos = '$idp'");
     if($update){
         header('location:index.php');
     } else {
