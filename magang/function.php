@@ -5,7 +5,7 @@ session_start();
 $conn = mysqli_connect("localhost", "root", "", "magang");
 
 //nambah data
-if(isset($_POST['tambahdata'])){
+if(isset($_POST['addnewlap'])){
     $nama_pos = $_POST['nama_pos'];
     $jenis_pos = $_POST['jenis_pos'];
     $lokasi_pos = $_POST['lokasi_pos'];
@@ -22,13 +22,13 @@ if(isset($_POST['tambahdata'])){
 
 //update data
 if(isset($_POST['updatedata'])){
-    $id_pos = $_POST['id_pos'];
+    $idp = $_POST['idp'];
     $nama_pos = $_POST['nama_pos'];
     $jenis_pos = $_POST['jenis_pos'];
     $lokasi_pos = $_POST['lokasi_pos'];
     $proggres = $_POST['proggres'];
 
-    $update = mysqli_query($conn,"update laporan set nama_pos='$nama_pos', jenis_pos='$jenis_pos', lokasi_pos='$lokasi_pos',proggres='$proggres' where id_pos = '$id_pos'");
+    $update = mysqli_query($conn,"update laporan set nama_pos='$nama_pos', jenis_pos='$jenis_pos', lokasi_pos='$lokasi_pos',proggres='$proggres' where id_pos = '$idp'");
     if($update){
         header('location:index.php');
     } else {
@@ -37,5 +37,16 @@ if(isset($_POST['updatedata'])){
     }
 }
 
+//menghapus
+if(isset($_POST['hapusbarang'])){
+    $id_pos = $_POST('id_pos');
 
+    $hapus = mysqli_query($conn, "delete from laporan where id_pos = '$id_pos'");
+    if($update){
+        header('location:index.php');
+    } else {
+        echo 'gagal';
+        header('location:index.php');
+    }
+}
 ?>
