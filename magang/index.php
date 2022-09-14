@@ -139,7 +139,7 @@ require 'cek.php';
                                                 $jenis_pos = $data['jenis_pos'];
                                                 $lokasi_pos = $data['lokasi_pos'];
                                                 $proggres = $data['proggres'];
-                                                $idp = $data['id_pos'];
+                                                $id_pos = $data['id_pos'];
                                             ?>
                                             <tr>
                                                 <td><?=$i++;?></td>
@@ -148,24 +148,24 @@ require 'cek.php';
                                                 <td><?=$lokasi_pos;?></td>
                                                 <td><?=$proggres;?></td>
                                                 <td>
-                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?=$idp;?>">
+                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?=$id_pos;?>">
                                                         Edit
                                                     </button>
-                                                    <input type="hidden" name="idposdihapus" value="<?=$idp;?>">
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?=$idp;?>">
+                                                    <input type="hidden" name="idposdihapus" value="<?=$id_pos;?>">
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?=$id_pos;?>">
                                                         Delete
                                                     </button>
                                                 </td>
                                             </tr>
 
                                             <!-- Edit Modal -->
-                                            <div class="modal fade" id="edit<?=$idp;?>">
+                                            <div class="modal fade" id="edit<?=$id_pos;?>">
                                                 <div class="modal-dialog">
                                                 <div class="modal-content">
                                                 
                                                     <!-- Modal Header -->
                                                     <div class="modal-header">
-                                                    <h4 class="modal-title">Edit data</h4>
+                                                    <h4 class="modal-title">Edit Data</h4>
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     </div>
                                                     
@@ -179,18 +179,19 @@ require 'cek.php';
                                                     
                                                     <input type="text" name="lokasi_pos" value="<?=$lokasi_pos;?>" class="form-control" required>
                                                     <br>
-                                                    <input type="text" name="proggres" value="<?=$proggres;?>" class="form-control">
+                                                    <input type="text" name="proggres" value="<?=$proggres;?>" class="form-control" required>
                                                     <br>
-                                                    <input type="hidden" name="idp" value="<?=$idp;?>">
+                                                    <input type="hidden" name="id_pos" value="<?=$id_pos;?>">
                                                     <button type="submit" class="btn btn-primary" name="updatedata">Update</button> 
                                                     </div>
+                                                    </form>
                                                     
                                                 </div>
                                                 </div>
                                             </div>
 
                                             <!-- Delete Modal -->
-                                            <div class="modal fade" id="delete<?=$idp;?>">
+                                            <div class="modal fade" id="delete<?=$id_pos;?>">
                                                 <div class="modal-dialog">
                                                 <div class="modal-content">
                                                 
@@ -204,7 +205,7 @@ require 'cek.php';
                                                     <form method="post">
                                                     <div class="modal-body">
                                                     Apakah Anda yakin ingin menghapus data Pos <?=$nama_pos;?>?
-                                                    <input type="hidden" name="idp" value="<?=$idp;?>">
+                                                    <input type="hidden" name="id_pos" value="<?=$id_pos;?>">
                                                     <br>
                                                     <br>
 
