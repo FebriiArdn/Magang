@@ -1,12 +1,13 @@
 <?php
 require 'function.php';
+
 //cek login, terdaftar apa ga
 if(isset($_POST['login'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     //cocokin dengan database, carii
-    $cekdatabase = mysqli_query($conn,"SELECT * FROM user where email='$email' and password = '$password'");
+    $cekdatabase = mysqli_query($conn,"SELECT * FROM login where email='$email' and password = '$password'");
     //hitung jumlah data
     $hitung = mysqli_num_rows($cekdatabase);
 
