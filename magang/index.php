@@ -2,6 +2,7 @@
 require 'function.php';
 require 'cek.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,6 +15,15 @@ require 'cek.php';
         <link href="css/styles.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+        <style>
+            .zoomable{
+                width: 100px;
+            }
+            .zoomable:hover{
+                transform: scale(2);
+                transiton: 0.3s ease;
+            }
+        </style>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -55,9 +65,9 @@ require 'cek.php';
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Insert Data
                             </a>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="example.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
+                                Example
                             </a>
                         </div>
                     </div>
@@ -112,7 +122,7 @@ require 'cek.php';
                         <div class="card mb-4">
                             <div class="card-header">
                                 <!-- Button to Open the Modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
                                     Tambah Data
                                 </button>
                             </div>
@@ -126,6 +136,7 @@ require 'cek.php';
                                                 <th>Jenis Pos</th>
                                                 <th>Lokasi Pos</th>
                                                 <th>Proggress</th>
+                                                <th>Photos</th>
                                                 <th>Change</th>
                                             </tr>
                                         </thead>
@@ -139,7 +150,19 @@ require 'cek.php';
                                                 $jenis_pos = $data['jenis_pos'];
                                                 $lokasi_pos = $data['lokasi_pos'];
                                                 $proggres = $data['proggres'];
+                                                $foto = $data['image'];
                                                 $id_pos = $data['id_pos'];
+
+                                                
+                                                //cek ada gambar atau tidak
+                                                $gambar = $data['image']; //ambil gambar
+                                                if($gambar==null){
+                                                    //jika tidak ada gambar
+                                                    $img = 'No Photo';
+                                                } else {
+                                                    //jika ada gambar
+                                                    $img = '<img src="image/'. $gambar.'" class="zoomable">';
+                                                }
                                             ?>
                                             <tr>
                                                 <td><?=$i++;?></td>
@@ -147,6 +170,7 @@ require 'cek.php';
                                                 <td><?=$jenis_pos;?></td>
                                                 <td><?=$lokasi_pos;?></td>
                                                 <td><?=$proggres;?></td>
+                                                <td><?=$img;?></td>
                                                 <td>
                                                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?=$id_pos;?>">
                                                         Edit
@@ -154,6 +178,9 @@ require 'cek.php';
                                                     <input type="hidden" name="idposdihapus" value="<?=$id_pos;?>">
                                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?=$id_pos;?>">
                                                         Delete
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detail<?=$id_pos;?>">
+                                                        Detail
                                                     </button>
                                                 </td>
                                             </tr>
@@ -202,20 +229,61 @@ require 'cek.php';
                                                     </div>
                                                     
                                                     <!-- Modal body -->
-                                                    <form method="post">
+                                                    <form method="post" >
                                                     <div class="modal-body">
                                                     Apakah Anda yakin ingin menghapus data Pos <?=$nama_pos;?>?
                                                     <input type="hidden" name="id_pos" value="<?=$id_pos;?>">
                                                     <br>
                                                     <br>
-
-                                                    <button type="submit" class="btn btn-danger" name="hapusdata">Hapus</button> 
+                                                    <button type="submit"  class="btn btn-danger" name="hapusdata">Hapus</button> 
+                                                    
                                                     </div>
                                                     </form>
                                                     
                                                 </div>
                                                 </div>
                                             </div>
+
+                                            <!-- Detail Modal -->
+                                            <div class="modal fade" id="detail<?=$id_pos;?>">
+                                                <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                    <h4 class="modal-title">Detail</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    
+                                                    <!-- Modal body -->
+                                                    <form method="post">
+                                                    <div class="modal-body">
+                                                    Nama Pos
+                                                    <input type="text" name="nama_pos" value="<?=$nama_pos;?>" class="form-control" required>
+                                                    <br>
+                                                    Jenis Pos
+                                                    <input type="text" name="jenis_pos" value="<?=$jenis_pos;?>" class="form-control" required>
+                                                    <br>
+                                                    Lokasi
+                                                    <input type="text" name="lokasi_pos" value="<?=$lokasi_pos;?>" class="form-control" required>
+                                                    <br>
+                                                    Proggres
+                                                    <input type="text" name="proggres" value="<?=$proggres;?>" class="form-control" required>
+                                                    <br>
+                                                    <input type="hidden" name="id_pos" value="<?=$id_pos;?>">
+                                                    </div>
+                                                    </form>
+
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                </div>
+                                                </div>
+                                            </div>
+
                                             <?php
                                             };
                                             ?>
@@ -267,7 +335,7 @@ require 'cek.php';
             </div>
             
             <!-- Modal body -->
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
             <div class="modal-body">
             <input type='text' name='nama_pos' placeholder="Nama Pos" class="form-control" required>
             <br>
@@ -275,7 +343,9 @@ require 'cek.php';
             <br>
             <input type='text' name='lokasi_pos' placeholder="Lokasi Pos" class="form-control" required>
             <br>
-            <input type='text' name='proggres' placeholder="Proggres" class="form-control">
+            <input type='text' name='proggres' placeholder="Proggres" class="form-control" required>
+            <br>
+            <input type='file' name='file' class="form-control" required >
             <br>
             <button type="submit" class="btn btn-primary" name="addnewlap">Submit</button> 
             </div>
