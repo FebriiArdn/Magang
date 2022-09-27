@@ -199,15 +199,16 @@ require 'cek.php';
                                                     <!-- Modal body -->
                                                     <form method="post" enctype="multipart/form-data">
                                                     <div class="modal-body">
+                                                    Nama Pos
                                                     <input type="text" name="nama_pos" value="<?=$nama_pos;?>" class="form-control" required>
                                                     <br>
+                                                    Jenis Pos
                                                     <input type="text" name="jenis_pos" value="<?=$jenis_pos;?>" class="form-control" required>
-                                                    <br>
-                                                    
+                                                    <br>Lokasi
                                                     <input type="text" name="lokasi_pos" value="<?=$lokasi_pos;?>" class="form-control" required>
-                                                    <br>
+                                                    <br>Proggres
                                                     <input type="text" name="proggres" value="<?=$proggres;?>" class="form-control"required>
-                                                    <br>
+                                                    <br>Manage Foto
                                                     <input type="file" name="file" class="form-control">
                                                     <br>
                                                     <input type="hidden" name="id_pos" value="<?=$id_pos;?>">                                                
