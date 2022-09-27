@@ -65,10 +65,6 @@ require 'cek.php';
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Insert Data
                             </a>
-                            <a class="nav-link" href="example.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Example
-                            </a>
                         </div>
                     </div>
 
@@ -187,7 +183,7 @@ require 'cek.php';
 
                                             <!-- Edit Modal -->
                                             <div class="modal fade" id="edit<?=$id_pos;?>">
-                                                <div class="modal-dialog">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                 
                                                     <!-- Modal Header -->
@@ -252,7 +248,7 @@ require 'cek.php';
 
                                             <!-- Detail Modal -->
                                             <div class="modal fade" id="detail<?=$id_pos;?>">
-                                                <div class="modal-dialog">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                 
                                                     <!-- Modal Header -->
@@ -327,7 +323,7 @@ require 'cek.php';
     </body>
         <!-- The Modal -->
     <div class="modal fade" id="myModal">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
         
             <!-- Modal Header -->
