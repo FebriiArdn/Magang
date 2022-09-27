@@ -150,7 +150,7 @@ require 'cek.php';
                                                 $jenis_pos = $data['jenis_pos'];
                                                 $lokasi_pos = $data['lokasi_pos'];
                                                 $proggres = $data['proggres'];
-                                                $foto = $data['image'];
+                                                $img = $data['image'];
                                                 $id_pos = $data['id_pos'];
 
                                                 
@@ -197,7 +197,7 @@ require 'cek.php';
                                                     </div>
                                                     
                                                     <!-- Modal body -->
-                                                    <form method="post">
+                                                    <form method="post" enctype="multipart/form-data">
                                                     <div class="modal-body">
                                                     <input type="text" name="nama_pos" value="<?=$nama_pos;?>" class="form-control" required>
                                                     <br>
@@ -206,7 +206,9 @@ require 'cek.php';
                                                     
                                                     <input type="text" name="lokasi_pos" value="<?=$lokasi_pos;?>" class="form-control" required>
                                                     <br>
-                                                    <input type="text" name="proggres" value="<?=$proggres;?>" class="form-control" required>
+                                                    <input type="text" name="proggres" value="<?=$proggres;?>" class="form-control"required>
+                                                    <br>
+                                                    <input type="file" name="file" class="form-control">
                                                     <br>
                                                     <input type="hidden" name="id_pos" value="<?=$id_pos;?>">
                                                     <button type="submit" class="btn btn-primary" name="updatedata">Update</button> 
@@ -345,7 +347,7 @@ require 'cek.php';
             <br>
             <input type='text' name='proggres' placeholder="Proggres" class="form-control" required>
             <br>
-            <input type='file' name='file' class="form-control" required >
+            <input type='file' name='file' class="form-control">
             <br>
             <button type="submit" class="btn btn-primary" name="addnewlap">Submit</button> 
             </div>
