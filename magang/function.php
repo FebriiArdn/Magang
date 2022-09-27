@@ -11,8 +11,9 @@ if(isset($_POST['addnewlap'])){
     $lokasi_pos = $_POST['lokasi_pos'];
     $proggres = $_POST['proggres'];
     
+    
     //soal gambar
-    $allowed_extension = array('png', 'jpg');
+    $allowed_extension = array('png', 'jpg', 'jpeg');
     $nama = $_FILES['file']['name']; //ngambil nama
     $dot = explode('.', $nama);
     $ekstensi = strtolower(end($dot)); //ngambil ekstensi
@@ -61,6 +62,7 @@ if(isset($_POST['addnewlap'])){
             </script>
             ';
         }
+        
     }else {
         //jika sudah ada 
         echo '
@@ -81,12 +83,41 @@ if(isset($_POST['updatedata'])){
     $lokasi_pos = $_POST['lokasi_pos'];
     $proggres = $_POST['proggres'];
 
-    $update = mysqli_query($conn,"update laporan set nama_pos='$nama_pos', jenis_pos='$jenis_pos', lokasi_pos='$lokasi_pos',proggres='$proggres' where id_pos = '$id_pos'");
-    if($update){
-        header('location:index.php');
+    //soal gambar
+    $allowed_extension = array('png', 'jpg', 'jpeg');
+    $nama = $_FILES['file']['name']; //ngambil nama
+    $dot = explode('.', $nama);
+    $ekstensi = strtolower(end($dot)); //ngambil ekstensi
+    $ukuran = $_FILES['file']['size'];
+    $file_tmp = $_FILES['file']['tmp_name']; //ngambil lok
+
+    //penamaan file > enskripsi
+    $image = md5(uniqid($nama,true) . time()).'.'. $ekstensi; //menggabungkan nama file yang dienkripsi
+    $gambar = mysqli_query($conn, "select * from laporan where id_pos='$id_pos'");
+    $get = mysqli_fetch_array($gambar);
+    $img = 'image/' .$get['image'];
+    unlink($img);
+    
+
+    if($ukuran==0){
+        //jika tidak ingin upload
+        $update = mysqli_query($conn,"update laporan set nama_pos='$nama_pos', jenis_pos='$jenis_pos', lokasi_pos='$lokasi_pos',proggres='$proggres' where id_pos = '$id_pos'");
+        if($update){
+            header('location:index.php');
+        } else {
+            echo 'Gagal';
+            header('location:index.php');
+        }
     } else {
-        echo 'Gagal';
-        header('location:index.php');
+        //jika ingin
+        move_uploaded_file($file_tmp, 'image/'. $image);
+        $update = mysqli_query($conn,"update laporan set nama_pos='$nama_pos', jenis_pos='$jenis_pos', lokasi_pos='$lokasi_pos',proggres='$proggres', image='$image' where id_pos = '$id_pos'");
+        if($update){
+            header('location:index.php');
+        } else {
+            echo 'Gagal';
+            header('location:index.php');
+        }
     }
 }
 
