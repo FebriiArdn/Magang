@@ -210,7 +210,10 @@ require 'cek.php';
                                                     <br>
                                                     <input type="file" name="file" class="form-control">
                                                     <br>
-                                                    <input type="hidden" name="id_pos" value="<?=$id_pos;?>">
+                                                    <input type="hidden" name="id_pos" value="<?=$id_pos;?>">                                                
+                                                    <img src="image/<?php echo $data['image'] ?>" width="120px" height="160px" />
+                                                    <br>
+                                                    <br>
                                                     <button type="submit" class="btn btn-primary" name="updatedata">Update</button> 
                                                     </div>
                                                     </form>
