@@ -121,6 +121,7 @@ require 'cek.php';
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
                                     Tambah Data
                                 </button>
+                                <a href="export.php" class="btn btn-info">Export Data</a>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -131,7 +132,6 @@ require 'cek.php';
                                                 <th>Nama Pos</th>
                                                 <th>Jenis Pos</th>
                                                 <th>Lokasi Pos</th>
-                                                <th>Proggress</th>
                                                 <th>Photos</th>
                                                 <th>Change</th>
                                             </tr>
@@ -165,7 +165,6 @@ require 'cek.php';
                                                 <td><?=$nama_pos;?></td>
                                                 <td><?=$jenis_pos;?></td>
                                                 <td><?=$lokasi_pos;?></td>
-                                                <td><?=$proggres;?></td>
                                                 <td><?=$img;?></td>
                                                 <td>
                                                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?=$id_pos;?>">
