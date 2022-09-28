@@ -27,8 +27,6 @@ if(isset($_POST['addnewlap'])){
     //validasi
     $cek = mysqli_query($conn, "select * from laporan where nama_pos='$nama_pos'");
     $hitung = mysqli_num_rows($cek);
-
-    if($hitung<1){
         //jika belum ada
 
         //proses upload gambar
@@ -62,16 +60,6 @@ if(isset($_POST['addnewlap'])){
             </script>
             ';
         }
-        
-    }else {
-        //jika sudah ada 
-        echo '
-        <script>
-        alert("nama barang sudah terdaftar");
-        window.location.href="index.php";
-        </script>
-        ';
-    }
 };
 
 
