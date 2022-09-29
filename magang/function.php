@@ -8,8 +8,12 @@ $conn = mysqli_connect("localhost", "root", "", "magang");
 if(isset($_POST['addnewlap'])){
     $nama_pos = $_POST['nama_pos'];
     $jenis_pos = $_POST['jenis_pos'];
+    $latitude = $_POST['latitude'];
     $lokasi_pos = $_POST['lokasi_pos'];
     $proggres = $_POST['proggres'];
+    $nama_penjaga = $_POST['nama_penjaga'];
+    $no_penjaga = $_POST['no_penjaga'];
+
     
     
     //soal gambar
@@ -34,8 +38,7 @@ if(isset($_POST['addnewlap'])){
             if($ukuran < 15000000){
                 move_uploaded_file($file_tmp, 'image/'. $image);
 
-                $adddata = mysqli_query($conn,"insert into laporan (nama_pos, jenis_pos, lokasi_pos, proggres, image) 
-                values('$nama_pos','$jenis_pos','$lokasi_pos','$proggres', '$image')");
+                $adddata = mysqli_query($conn,"insert into laporan (nama_pos, jenis_pos, latitude, lokasi_pos, proggres, nama_penjaga, no_penjaga, image) values('$nama_pos','$jenis_pos', '$latitude', '$lokasi_pos','$proggres', '$nama_penjaga', '$no_penjaga', '$image')");
                 if($adddata){
                     header('location:index.php');
                 } else {
