@@ -11,7 +11,7 @@ require 'cek.php';
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard Hidro</title>
+        <title>Dashboard - SB Admin</title>
         <link href="css/styles.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
@@ -259,24 +259,22 @@ require 'cek.php';
                                                     <!-- Modal body -->
                                                     <form method="post">
                                                     <div class="modal-body">
-                                                    <center>
-                                                        <img src="image/<?php echo $data['image'] ?>" width="120px" height="160px" />
-                                                    </center>
-                                                       <br>
-                                                           <div class="row">
-                                                            <div class="col-sm-4">
-                                                                Nama Pos <br />
-                                                                Jenis Pos <br>
-                                                                Lokasi Pos <br>
-                                                                Progress <br>
-                                                                <a href="https://www.youtube.com/watch?v=ZUoGgf3hZik">youtube</a>
-                                                            </div>
-                                                            <div class="col-sm-8">
-                                                                : <?php echo $data['nama_pos'] ?><br>
-                                                                : <?php echo $data['jenis_pos'] ?><br>
-                                                                : <?php echo $data['lokasi_pos'] ?><br>
-                                                                : <?php echo $data['proggres'] ?><br>
-                                                            </div>
+                                                    Nama Pos
+                                                    <input type="text" name="nama_pos" value="<?=$nama_pos;?>" class="form-control" required>
+                                                    <br>
+                                                    Jenis Pos
+                                                    <input type="text" name="jenis_pos" value="<?=$jenis_pos;?>" class="form-control" required>
+                                                    <br>
+                                                    Lokasi
+                                                    <input type="text" name="lokasi_pos" value="<?=$lokasi_pos;?>" class="form-control" required>
+                                                    <br>
+                                                    Proggres
+                                                    <input type="text" name="proggres" value="<?=$proggres;?>" class="form-control" required>
+                                                    <br>
+                                                    <input type="hidden" name="id_pos" value="<?=$id_pos;?>">
+                                                    </div>
+                                                    </form>
+
                                                     <!-- Modal footer -->
                                                     <div class="modal-footer">
                                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -353,7 +351,7 @@ require 'cek.php';
             <br>
             <input type='text' name='proggres' placeholder="Proggres" class="form-control" required>
             <br>
-            <input type='file' name='file' class="form-control" required>
+            <input type='file' name='file' class="form-control">
             <br>
             <button type="submit" class="btn btn-primary" name="addnewlap">Submit</button> 
             </div>
