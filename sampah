@@ -20,6 +20,7 @@ if(isset($_POST['addnewlap'])){
     $jenis_alat = $_POST['jenis_alat'];
     $id_logger = $_POST['id_logger'];
     $id_modem = $_POST['id_modem'];
+    $no_gsm = $_POST['no_gsm'];
     $nama_penjaga = $_POST['nama_penjaga'];
     $no_penjaga = $_POST['no_penjaga'];
     $link_data = $_POST['link_data'];
