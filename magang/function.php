@@ -27,7 +27,6 @@ if(isset($_POST['addnewlap'])){
     //validasi
     $cek = mysqli_query($conn, "select * from laporan where nama_pos='$nama_pos'");
     $hitung = mysqli_num_rows($cek);
-        //jika belum ada
 
         //proses upload gambar
         if(in_array($ekstensi, $allowed_extension) === true){
@@ -60,6 +59,7 @@ if(isset($_POST['addnewlap'])){
             </script>
             ';
         }
+        
 };
 
 
@@ -84,7 +84,7 @@ if(isset($_POST['updatedata'])){
     $gambar = mysqli_query($conn, "select * from laporan where id_pos='$id_pos'");
     $get = mysqli_fetch_array($gambar);
     $img = 'image/' .$get['image'];
-    unlink($img);
+
     
 
     if($ukuran==0){
@@ -101,13 +101,14 @@ if(isset($_POST['updatedata'])){
         move_uploaded_file($file_tmp, 'image/'. $image);
         $update = mysqli_query($conn,"update laporan set nama_pos='$nama_pos', jenis_pos='$jenis_pos', lokasi_pos='$lokasi_pos',proggres='$proggres', image='$image' where id_pos = '$id_pos'");
         if($update){
-            header('location:index.php');
+            unlink($img);
         } else {
             echo 'Gagal';
             header('location:index.php');
         }
     }
 }
+
 
 //menghapus
 if(isset($_POST['hapusdata'])){
