@@ -17,7 +17,7 @@ require 'cek.php';
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <style>
             p.jarak{
-                line-height: 35px;
+            line-height: 35px;        
             }
             .zoomable{
                 width: 100px;
@@ -300,7 +300,55 @@ require 'cek.php';
                                             <?php
                                             };
                                             ?>
+                                            <!-- Tambah Data Modal -->
+                                            <div class="modal fade" id="myModal">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                    <div class="modal-content">
 
+                                                        <!-- Modal Header -->
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Tambah Data</h4>
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        </div>
+                                                                                            
+                                                        <!-- Modal body -->
+                                                        <form method="post" enctype="multipart/form-data">
+                                                            <div class="modal-body">
+                                                                <p class="jarak">
+                                                                Nama Pos<input type='text' name='nama_pos' placeholder="Nama Pos" class="form-control" required>
+                                                                <label for="jenis_pos">Jenis Pos</label>
+                                                                <select name="jenis_pos" class="form-control" required>
+                                                                    <option value="" disabled selected>Pilih Jenis Pos</option>
+                                                                    <option value="Pos Duga Air">Pos Duga Air</option>
+                                                                    <option value="Pos Curah Hujan">Pos Curah Hujan</option>
+                                                                </select>
+                                                                Latitude<input type='text' name='latitude' placeholder="Latitude" class="form-control" required>
+                                                                Lokasi Pos<input type='text' name='lokasi_pos' placeholder="Lokasi Pos" class="form-control" required>
+                                                                Sub Das<input type='text' name='sub_das' placeholder="Sub Das" class="form-control" required>
+                                                                Das<input type='text' name='das' placeholder="Das" class="form-control" required>
+                                                                Sistem Sungai<input type='text' name='sistem_sungai' placeholder="sistem sungai" class="form-control" required>
+                                                                Wilayah Sungai<input type='text' name='wilayah_sungai' placeholder="wilayah sungai" class="form-control" required>
+                                                                Progress<input type='text' name='proggres' placeholder="Proggres" class="form-control" required>
+                                                                Nama Penjaga<input type='text' name='nama_penjaga' placeholder="Nama penjaga" class="form-control" required>
+                                                                No Penjaga<input type='text' name='no_penjaga' placeholder="no penjaga" class="form-control" required>
+                                                                Jumlah Ketersediaan Data<input type='text' name='jumlah_ketersediaandata' placeholder="jumlah ketersediaandata" class="form-control" required>
+                                                                Data Ketersediaan<input type='text' name='data_ketersediaantahun' placeholder="data ketersediaan tahun" class="form-control" required>
+                                                                Dibangun<input type='text' name='dibangun' placeholder="dibangun" class="form-control" required>
+                                                                Dikelola<input type='text' name='dikelola' placeholder="dikelola" class="form-control" required>
+                                                                Gambar Pos <input type='file' name='file' class="form-control" required>
+                                                                <br>
+                                                                <button type="submit" class="btn btn-primary" name="addnewlap">Submit</button> 
+                                                                </p>
+                                                            </div>
+                                                        </form>
+
+                                                        <!-- Modal footer -->
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tbody>
                                     </table>
                                 </div>
@@ -332,47 +380,4 @@ require 'cek.php';
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/datatables-demo.js"></script>
     </body>
-
-    <!-- Detail Modal -->
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Tambah Data</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                                                    
-                <!-- Modal body -->
-                <form method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <p class="jarak">
-                        Nama Pos<input type='text' name='nama_pos' placeholder="Nama Pos" class="form-control" required>
-                        <label for="jenis_pos">Jenis Pos
-                            <select name="jenis_pos" id="jenis_pos">
-                                <option value="">Pilih jenis pos</option>
-                                <option value="Pos Duga Air">Pos Duga Air</option>
-                                <option value="Pos Curah Hujan">Pos Curah Hujan</option>
-                            </select>
-                        </label><br>
-                        Latitude<input type='text' name='latitude' placeholder="Latitude" class="form-control" required libe he>
-                        Lokasi Pos<input type='text' name='lokasi_pos' placeholder="Lokasi Pos" class="form-control" required>
-                        Progress<input type='text' name='proggres' placeholder="Proggres" class="form-control" required>
-                        Nama Penjaga<input type='text' name='nama_penjaga' placeholder="Nama penjaga" class="form-control" required>
-                        No Penjaga<input type='text' name='no_penjaga' placeholder="no penjaga" class="form-control" required>
-                        Gambar Pos <input type='file' name='file' class="form-control">
-                        <br>
-                        <button type="submit" class="btn btn-primary" name="addnewlap">Submit</button> 
-                    </div>
-                    </p>
-                </form>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </html>
