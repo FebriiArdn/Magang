@@ -10,9 +10,17 @@ if(isset($_POST['addnewlap'])){
     $jenis_pos = $_POST['jenis_pos'];
     $latitude = $_POST['latitude'];
     $lokasi_pos = $_POST['lokasi_pos'];
+    $sub_das = $_POST['sub_das'];
+    $das = $_POST['das'];
+    $sistem_sungai = $_POST['sistem_sungai'];
+    $wilayah_sungai = $_POST['wilayah_sungai'];
     $proggres = $_POST['proggres'];
     $nama_penjaga = $_POST['nama_penjaga'];
     $no_penjaga = $_POST['no_penjaga'];
+    $jumlah_ketersediaandata = $_POST['jumlah_ketersediaandata'];
+    $data_ketersediaantahun = $_POST['data_ketersediaantahun'];
+    $dibangun = $_POST['dibangun'];
+    $dikelola = $_POST['dikelola'];
 
     
     
@@ -38,7 +46,8 @@ if(isset($_POST['addnewlap'])){
             if($ukuran < 15000000){
                 move_uploaded_file($file_tmp, 'image/'. $image);
 
-                $adddata = mysqli_query($conn,"insert into laporan (nama_pos, jenis_pos, latitude, lokasi_pos, proggres, nama_penjaga, no_penjaga, image) values('$nama_pos','$jenis_pos', '$latitude', '$lokasi_pos','$proggres', '$nama_penjaga', '$no_penjaga', '$image')");
+                $adddata = mysqli_query($conn,"insert into laporan (nama_pos, jenis_pos, latitude, lokasi_pos, sub_das, das, sistem_sungai, wilayah_sungai, proggres, nama_penjaga, no_penjaga, jumlah_ketersediaandata, data_ketersediaantahun, dibangun, dikelola, image) values('$nama_pos','$jenis_pos', '$latitude', '$lokasi_pos', '$sub_das',
+                '$das', '$sistem_sungai', '$wilayah_sungai', '$proggres', '$nama_penjaga', '$no_penjaga', '$jumlah_ketersediaandata', '$data_ketersediaantahun', '$dibangun', '$dikelola', '$image')");
                 if($adddata){
                     header('location:index.php');
                 } else {
@@ -58,7 +67,7 @@ if(isset($_POST['addnewlap'])){
         } else {
             echo '
             <script>
-            alert("file harus png/jpg");
+            alert("file harus png/jpg/jpeg");
             window.location.href="index.php";
             </script>
             ';
