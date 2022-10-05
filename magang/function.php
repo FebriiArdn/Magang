@@ -9,14 +9,23 @@ if(isset($_POST['addnewlap'])){
     $nama_pos = $_POST['nama_pos'];
     $jenis_pos = $_POST['jenis_pos'];
     $latitude = $_POST['latitude'];
+    $longitude = $_POST['longitude'];
     $lokasi_pos = $_POST['lokasi_pos'];
+    $sungai = $_POST['sungai'];
     $sub_das = $_POST['sub_das'];
     $das = $_POST['das'];
     $sistem_sungai = $_POST['sistem_sungai'];
     $wilayah_sungai = $_POST['wilayah_sungai'];
+    $jenis_alat = $_POST['jenis_alat'];
+    $id_logger = $_POST['id_logger'];
+    $id_modem = $_POST['id_modem'];
+    $no_gsm = $_POST['no_gsm'];
     $proggres = $_POST['proggres'];
     $nama_penjaga = $_POST['nama_penjaga'];
     $no_penjaga = $_POST['no_penjaga'];
+    $link_data = $_POST['link_data'];
+    $link_publikasi = $_POST['link_publikasi'];
+    $tahun_dibangun = $_POST['tahun_dibangun'];
     $jumlah_ketersediaandata = $_POST['jumlah_ketersediaandata'];
     $data_ketersediaantahun = $_POST['data_ketersediaantahun'];
     $dibangun = $_POST['dibangun'];
@@ -45,9 +54,8 @@ if(isset($_POST['addnewlap'])){
             //validasi ukuran file
             if($ukuran < 15000000){
                 move_uploaded_file($file_tmp, 'image/'. $image);
-
-                $adddata = mysqli_query($conn,"insert into laporan (nama_pos, jenis_pos, latitude, lokasi_pos, sub_das, das, sistem_sungai, wilayah_sungai, proggres, nama_penjaga, no_penjaga, jumlah_ketersediaandata, data_ketersediaantahun, dibangun, dikelola, image) values('$nama_pos','$jenis_pos', '$latitude', '$lokasi_pos', '$sub_das',
-                '$das', '$sistem_sungai', '$wilayah_sungai', '$proggres', '$nama_penjaga', '$no_penjaga', '$jumlah_ketersediaandata', '$data_ketersediaantahun', '$dibangun', '$dikelola', '$image')");
+                $adddata = mysqli_query($conn,"insert into laporan (nama_pos, jenis_pos, latitude, longitude, lokasi_pos, sungai , sub_das, das, sistem_sungai, wilayah_sungai, jenis_alat, id_logger, id_modem, no_gsm, proggres, nama_penjaga, no_penjaga, link_data, link_publikasi, tahun_dibangun, jumlah_ketersediaandata, data_ketersediaantahun, dibangun, dikelola, image) values('$nama_pos','$jenis_pos', '$latitude', '$longitude', '$lokasi_pos', '$sungai', '$sub_das',
+                '$das', '$sistem_sungai', '$wilayah_sungai', '$jenis_alat', '$id_logger', '$id_modem', '$no_gsm', '$proggres', '$nama_penjaga', '$no_penjaga', '$link_data', '$link_publikasi', '$tahun_dibangun', '$jumlah_ketersediaandata', '$data_ketersediaantahun', '$dibangun', '$dikelola', '$image')");
                 if($adddata){
                     header('location:index.php');
                 } else {
