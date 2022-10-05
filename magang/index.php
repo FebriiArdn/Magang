@@ -147,8 +147,28 @@ require 'cek.php';
                                             while($data=mysqli_fetch_array($ambilsemuadata)){
                                                 $nama_pos = $data['nama_pos'];
                                                 $jenis_pos = $data['jenis_pos'];
+                                                $latitude = $data['latitude'];
+                                                $longitude = $data['longitude'];
                                                 $lokasi_pos = $data['lokasi_pos'];
+                                                $sungai = $data['sungai'];
+                                                $sub_das = $data['sub_das'];
+                                                $das = $data['das'];
+                                                $sistem_sungai = $data['sistem_sungai'];
+                                                $wilayah_sungai = $data['wilayah_sungai'];
+                                                $jenis_alat = $data['jenis_alat'];
+                                                $id_logger = $data['id_logger'];
+                                                $id_modem = $data['id_modem'];
+                                                $no_gsm = $data['no_gsm'];
                                                 $proggres = $data['proggres'];
+                                                $nama_penjaga = $data['nama_penjaga'];
+                                                $no_penjaga = $data['no_penjaga'];
+                                                $link_data = $data['link_data'];
+                                                $link_publikasi = $data['link_publikasi'];
+                                                $tahun_dibangun = $data['tahun_dibangun'];
+                                                $jumlah_ketersediaandata = $data['jumlah_ketersediaandata'];
+                                                $data_ketersediaantahun = $data['data_ketersediaantahun'];
+                                                $dibangun = $data['dibangun'];
+                                                $dikelola = $data['dikelola'];
                                                 $img = $data['image'];
                                                 $id_pos = $data['id_pos'];
 
@@ -197,23 +217,35 @@ require 'cek.php';
                                                     <!-- Modal body -->
                                                     <form method="post" enctype="multipart/form-data">
                                                     <div class="modal-body">
-                                                    Nama Pos
-                                                    <input type="text" name="nama_pos" value="<?=$nama_pos;?>" class="form-control" required>
-                                                    <br>
-                                                    Jenis Pos
-                                                    <input type="text" name="jenis_pos" value="<?=$jenis_pos;?>" class="form-control" required>
-                                                    <br>Lokasi
-                                                    <input type="text" name="lokasi_pos" value="<?=$lokasi_pos;?>" class="form-control" required>
-                                                    <br>Proggres
-                                                    <input type="text" name="proggres" value="<?=$proggres;?>" class="form-control"required>
-                                                    <br>Manage Foto
-                                                    <input type="file" name="file" class="form-control">
-                                                    <br>
-                                                    <input type="hidden" name="id_pos" value="<?=$id_pos;?>">                                                
+                                                    Nama Pos <input type="text" name="nama_pos" value="<?=$nama_pos;?>" class="form-control" required>
+                                                    Jenis Pos <input type="text" name="jenis_pos" value="<?=$jenis_pos;?>" class="form-control" required>
+                                                    Latitude <input type="text" name="latitude" value="<?=$latitude;?>" class="form-control" required>
+                                                    Longitude <input type="text" name="longitude" value="<?=$longitude;?>" class="form-control" required>
+                                                    Lokasi Pos <input type="text" name="lokasi_pos" value="<?=$lokasi_pos;?>" class="form-control" required>
+                                                    Sungai <input type="text" name="sungai" value="<?=$sungai;?>" class="form-control" required>
+                                                    Sub Das <input type="text" name="sub_das" value="<?=$sub_das;?>" class="form-control" required>
+                                                    Das <input type="text" name="das" value="<?=$das;?>" class="form-control" required>
+                                                    Sistem Sungai <input type="text" name="sistem_sungai" value="<?=$sistem_sungai;?>" class="form-control" required>
+                                                    Wilayah Sungai<input type="text" name="wilayah_sungai" value="<?=$wilayah_sungai;?>" class="form-control" required>
+                                                    Jenis Alat<input type="text" name="jenis_alat" value="<?=$jenis_alat;?>" class="form-control" required>
+                                                    ID Logger<input type="text" name="id_logger" value="<?=$id_logger;?>" class="form-control" required>
+                                                    ID Modem<input type="text" name="id_modem" value="<?=$id_modem;?>" class="form-control" required>                
+                                                    Proggres <input type="text" name="proggres" value="<?=$proggres;?>" class="form-control"required>
+                                                    Nama Penjaga <input type="text" name="nama_penjaga" value="<?=$nama_penjaga;?>" class="form-control" required>
+                                                    No Penjaga <input type="text" name="no_penjaga" value="<?=$no_penjaga;?>" class="form-control" required>
+                                                    Link Data <input type="text" name="link_data" value="<?=$link_data;?>" class="form-control" required>
+                                                    Link Publikasi<input type="text" name="link_publikasi" value="<?=$link_publikasi;?>" class="form-control" required>
+                                                    Tahun Dibangun <input type="text" name="tahun_dibangun" value="<?=$tahun_dibangun;?>" class="form-control" required>
+                                                    Jumlah Ketersediaan Data<input type="text" name="jumlah_ketersediaandata" value="<?=$jumlah_ketersediaandata;?>" class="form-control" required>
+                                                    Data Ketersediaan Tahun<input type="text" name="data_ketersediaantahun" value="<?=$data_ketersediaantahun;?>" class="form-control" required>
+                                                    Dibangun<input type="text" name="dibangun" value="<?=$dikelola;?>" class="form-control" required>
+                                                    Dikelola<input type="text" name="dikelola" value="<?=$dikelola;?>" class="form-control" required>
+                                                    Manage Foto <input type="file" name="file" class="form-control">
                                                     <img src="image/<?php echo $data['image'] ?>" width="120px" height="160px" />
                                                     <br>
                                                     <br>
-                                                    <button type="submit" class="btn btn-primary" name="updatedata">Update</button> 
+                                                    <button type="submit" class="btn btn-primary" name="updatedata">Update</button>
+
                                                     </div>
                                                     </form>
                                                     
@@ -274,11 +306,12 @@ require 'cek.php';
                                                                 Progress <br>
                                                                 Nama Penjaga <br>
                                                                 No Penjaga <br>
-                                                            </div>
+                                                            </div> 
                                                             <div class="col-sm-8">
                                                                 : <?php echo $data['nama_pos'] ?><br>
                                                                 : <?php echo $data['jenis_pos'] ?><br>
                                                                 : <?php echo $data['latitude'] ?><br>
+
                                                                 : <?php echo $data['lokasi_pos'] ?><br>
                                                                 : <?php echo $data['proggres'] ?><br>
                                                                 : <?php echo $data['nama_penjaga'] ?><br>
@@ -323,14 +356,23 @@ require 'cek.php';
                                                                     <option value="Pos Curah Hujan">Pos Curah Hujan</option>
                                                                 </select>
                                                                 Latitude<input type='text' name='latitude' placeholder="Latitude" class="form-control" required>
+                                                                Longitude<input type='text' name='longitude' placeholder="Longitude" class="form-control" required>
                                                                 Lokasi Pos<input type='text' name='lokasi_pos' placeholder="Lokasi Pos" class="form-control" required>
+                                                                Sungai<input type='text' name='sungai' placeholder="Sungai" class="form-control" required>
                                                                 Sub Das<input type='text' name='sub_das' placeholder="Sub Das" class="form-control" required>
                                                                 Das<input type='text' name='das' placeholder="Das" class="form-control" required>
                                                                 Sistem Sungai<input type='text' name='sistem_sungai' placeholder="sistem sungai" class="form-control" required>
                                                                 Wilayah Sungai<input type='text' name='wilayah_sungai' placeholder="wilayah sungai" class="form-control" required>
+                                                                Jenis Alat<input type='text' name='jenis_alat' placeholder="Jenis Alat" class="form-control" required>
+                                                                Id Logger<input type='text' name='id_logger' placeholder="Id Logger" class="form-control" required>
+                                                                Id Modem<input type='text' name='id_modem' placeholder="Id Modem" class="form-control" required>
+                                                                No Gsm<input type='text' name='no_gsm' placeholder="No Gsm" class="form-control" required>
                                                                 Progress<input type='text' name='proggres' placeholder="Proggres" class="form-control" required>
                                                                 Nama Penjaga<input type='text' name='nama_penjaga' placeholder="Nama penjaga" class="form-control" required>
                                                                 No Penjaga<input type='text' name='no_penjaga' placeholder="no penjaga" class="form-control" required>
+                                                                Link Data<input type='text' name='link_data' placeholder="Link Data" class="form-control" required>
+                                                                Link Publikasi<input type='text' name='link_publikasi' placeholder="Link Publikasi" class="form-control" required>
+                                                                Tahun Dibangun<input type='text' name='tahun_dibangun' placeholder="Tahun Dibangun" class="form-control" required>
                                                                 Jumlah Ketersediaan Data<input type='text' name='jumlah_ketersediaandata' placeholder="jumlah ketersediaandata" class="form-control" required>
                                                                 Data Ketersediaan<input type='text' name='data_ketersediaantahun' placeholder="data ketersediaan tahun" class="form-control" required>
                                                                 Dibangun<input type='text' name='dibangun' placeholder="dibangun" class="form-control" required>
