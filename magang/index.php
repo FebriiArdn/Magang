@@ -1,6 +1,22 @@
 <?php
 require 'function.php';
 require 'cek.php';
+
+//ambil total pos
+$get1 = mysqli_query($conn, "select * from laporan");
+$count1 = mysqli_num_rows($get1); //menghitung seluruh kolom
+
+//pos duga air
+$get2 = mysqli_query($conn, "select * from laporan where jenis_pos='Pos Duga Air'");
+$count2 = mysqli_num_rows($get2); //menghitung seluruh kolom
+
+//pos curah hujan
+$get3 = mysqli_query($conn, "select * from laporan where jenis_pos='Pos Curah Hujan'");
+$count3 = mysqli_num_rows($get3); //menghitung seluruh kolom
+
+//pos klimatologi
+$get4 = mysqli_query($conn, "select * from laporan where jenis_pos='Pos Klimatologi'");
+$count4 = mysqli_num_rows($get4); //menghitung seluruh kolom
 ?>
 
 <!DOCTYPE html>
@@ -82,38 +98,54 @@ require 'cek.php';
                         </ol>
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Nama Pos</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                <div class="card-header bg-success text-white mb-4">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <i class="fa fa-list fa-4x"></i>
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="display-5"><?=$count1;?></h3>
+                                            <h6>Total Seluruh Pos</h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Jenis Pos</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                <div class="card-header bg-info text-white mb-4">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <i class="fa fa-water fa-4x"></i>
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="display-5"><?=$count2;?></h3>
+                                            <h6>Pos Duga Air</h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Progress</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                <div class="card-header bg-secondary text-white mb-4">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <i class="fa fa-tint fa-4x"></i>
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="display-5"><?=$count3;?></h3>
+                                            <h6>Pos Curah Hujan</h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Link</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                <div class="card-header bg-warning text-white mb-4">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <i class="fa fa-cloud fa-4x"></i>
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="display-5"><?=$count4;?></h3>
+                                            <h6>Pos Klimatologi</h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -218,7 +250,13 @@ require 'cek.php';
                                                     <form method="post" enctype="multipart/form-data">
                                                     <div class="modal-body">
                                                     Nama Pos <input type="text" name="nama_pos" value="<?=$nama_pos;?>" class="form-control" required>
-                                                    Jenis Pos <input type="text" name="jenis_pos" value="<?=$jenis_pos;?>" class="form-control" required>
+                                                    <label for="jenis_pos">Jenis Pos</label>
+                                                                <select name="jenis_pos" class="form-control" required>
+                                                                    <option value="" disabled selected>Pilih Jenis Pos</option>
+                                                                    <option value="Pos Duga Air">Pos Duga Air</option>
+                                                                    <option value="Pos Curah Hujan">Pos Curah Hujan</option>
+                                                                    <option value="Pos Klimatologi">Pos Klimatologi</option>
+                                                                </select>
                                                     Latitude <input type="text" name="latitude" value="<?=$latitude;?>" class="form-control" required>
                                                     Longitude <input type="text" name="longitude" value="<?=$longitude;?>" class="form-control" required>
                                                     Lokasi Pos <input type="text" name="lokasi_pos" value="<?=$lokasi_pos;?>" class="form-control" required>
@@ -243,6 +281,7 @@ require 'cek.php';
                                                     Manage Foto <input type="file" name="file" class="form-control">
                                                     <img src="image/<?php echo $data['image'] ?>" width="120px" height="160px" />
                                                     <br>
+                                                    <input type="hidden" name="id_pos" value="<?=$id_pos;?>">
                                                     <br>
                                                     <button type="submit" class="btn btn-primary" name="updatedata">Update</button>
 
@@ -387,6 +426,7 @@ require 'cek.php';
                                                                     <option value="" disabled selected>Pilih Jenis Pos</option>
                                                                     <option value="Pos Duga Air">Pos Duga Air</option>
                                                                     <option value="Pos Curah Hujan">Pos Curah Hujan</option>
+                                                                    <option value="Pos Klimatologi">Pos Klimatologi</option>
                                                                 </select>
                                                                 Latitude<input type='text' name='latitude' placeholder="Latitude" class="form-control" required>
                                                                 Longitude<input type='text' name='longitude' placeholder="Longitude" class="form-control" required>
