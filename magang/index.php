@@ -251,8 +251,7 @@ $count4 = mysqli_num_rows($get4); //menghitung seluruh kolom
                                                     <div class="modal-body">
                                                     Nama Pos <input type="text" name="nama_pos" value="<?=$nama_pos;?>" class="form-control" required>
                                                     <label for="jenis_pos">Jenis Pos</label>
-                                                                <select name="jenis_pos" class="form-control" required>
-                                                                    <option value="<?=$data['jenis_pos']?>"><?=$data['jenis_pos']?></option>
+                                                                <select name="jenis_pos" value="<?=$data['jenis_pos']?>"<?=$data['jenis_pos']?> class="form-control" required>
                                                                     <option value="Pos Duga Air">Pos Duga Air</option>
                                                                     <option value="Pos Curah Hujan">Pos Curah Hujan</option>
                                                                     <option value="Pos Klimatologi">Pos Klimatologi</option>
