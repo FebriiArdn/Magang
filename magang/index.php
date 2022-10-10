@@ -8,15 +8,15 @@ $count1 = mysqli_num_rows($get1); //menghitung seluruh kolom
 
 //pos duga air
 $get2 = mysqli_query($conn, "select * from laporan where jenis_pos='Pos Duga Air'");
-$count2 = mysqli_num_rows($get2); //menghitung seluruh kolom
+$count2 = mysqli_num_rows($get2); //menghitung pos duga air
 
 //pos curah hujan
 $get3 = mysqli_query($conn, "select * from laporan where jenis_pos='Pos Curah Hujan'");
-$count3 = mysqli_num_rows($get3); //menghitung seluruh kolom
+$count3 = mysqli_num_rows($get3); //menghitung pos curah hujan
 
 //pos klimatologi
 $get4 = mysqli_query($conn, "select * from laporan where jenis_pos='Pos Klimatologi'");
-$count4 = mysqli_num_rows($get4); //menghitung seluruh kolom
+$count4 = mysqli_num_rows($get4); //menghitung pos klimatologi
 ?>
 
 <!DOCTYPE html>
@@ -105,7 +105,8 @@ $count4 = mysqli_num_rows($get4); //menghitung seluruh kolom
                                         </div>
                                         <div class="col">
                                             <h3 class="display-5"><?=$count1;?></h3>
-                                            <h6>Total Seluruh Pos</h6>
+                                            <h6>Total <br>
+                                                 Seluruh Pos</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +119,8 @@ $count4 = mysqli_num_rows($get4); //menghitung seluruh kolom
                                         </div>
                                         <div class="col">
                                             <h3 class="display-5"><?=$count2;?></h3>
-                                            <h6>Pos Duga Air</h6>
+                                            <h6>Pos  <br>
+                                                Duga Air</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -131,7 +133,8 @@ $count4 = mysqli_num_rows($get4); //menghitung seluruh kolom
                                         </div>
                                         <div class="col">
                                             <h3 class="display-5"><?=$count3;?></h3>
-                                            <h6>Pos Curah Hujan</h6>
+                                            <h6>Pos <br>
+                                                 Curah Hujan</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -144,7 +147,8 @@ $count4 = mysqli_num_rows($get4); //menghitung seluruh kolom
                                         </div>
                                         <div class="col">
                                             <h3 class="display-5"><?=$count4;?></h3>
-                                            <h6>Pos Klimatologi</h6>
+                                            <h6>Pos <br>
+                                                 Klimatologi</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -248,43 +252,45 @@ $count4 = mysqli_num_rows($get4); //menghitung seluruh kolom
                                                     
                                                     <!-- Modal body -->
                                                     <form method="post" enctype="multipart/form-data">
-                                                    <div class="modal-body">
-                                                    Nama Pos <input type="text" name="nama_pos" value="<?=$nama_pos;?>" class="form-control" required>
-                                                    <label for="jenis_pos">Jenis Pos</label>
-                                                                <select name="jenis_pos" value="<?=$data['jenis_pos']?>"<?=$data['jenis_pos']?> class="form-control" required>
+                                                        <div class="modal-body">
+                                                            <p class="jarak">
+                                                                Nama Pos <input type="text" name="nama_pos" value="<?=$nama_pos;?>" class="form-control" required>
+                                                                <label for="jenis_pos">Jenis Pos</label>
+                                                                <select name="jenis_pos" class="form-control" required>
+                                                                    <option selected value="<?php echo $data['jenis_pos']; ?>"><?php echo $data['jenis_pos']; ?></option>
                                                                     <option value="Pos Duga Air">Pos Duga Air</option>
                                                                     <option value="Pos Curah Hujan">Pos Curah Hujan</option>
                                                                     <option value="Pos Klimatologi">Pos Klimatologi</option>
                                                                 </select>
-                                                    Latitude <input type="text" name="latitude" value="<?=$latitude;?>" class="form-control" required>
-                                                    Longitude <input type="text" name="longitude" value="<?=$longitude;?>" class="form-control" required>
-                                                    Lokasi Pos <input type="text" name="lokasi_pos" value="<?=$lokasi_pos;?>" class="form-control" required>
-                                                    Sungai <input type="text" name="sungai" value="<?=$sungai;?>" class="form-control" required>
-                                                    Sub Das <input type="text" name="sub_das" value="<?=$sub_das;?>" class="form-control" required>
-                                                    Das <input type="text" name="das" value="<?=$das;?>" class="form-control" required>
-                                                    Sistem Sungai <input type="text" name="sistem_sungai" value="<?=$sistem_sungai;?>" class="form-control" required>
-                                                    Wilayah Sungai<input type="text" name="wilayah_sungai" value="<?=$wilayah_sungai;?>" class="form-control" required>
-                                                    Jenis Alat<input type="text" name="jenis_alat" value="<?=$jenis_alat;?>" class="form-control" required>
-                                                    ID Logger<input type="text" name="id_logger" value="<?=$id_logger;?>" class="form-control" required>
-                                                    ID Modem<input type="text" name="id_modem" value="<?=$id_modem;?>" class="form-control" required>                
-                                                    Proggres <input type="text" name="proggres" value="<?=$proggres;?>" class="form-control"required>
-                                                    Nama Penjaga <input type="text" name="nama_penjaga" value="<?=$nama_penjaga;?>" class="form-control" required>
-                                                    No Penjaga <input type="text" name="no_penjaga" value="<?=$no_penjaga;?>" class="form-control" required>
-                                                    Link Data <input type="text" name="link_data" value="<?=$link_data;?>" class="form-control" required>
-                                                    Link Publikasi<input type="text" name="link_publikasi" value="<?=$link_publikasi;?>" class="form-control" required>
-                                                    Tahun Dibangun <input type="text" name="tahun_dibangun" value="<?=$tahun_dibangun;?>" class="form-control" required>
-                                                    Jumlah Ketersediaan Data<input type="text" name="jumlah_ketersediaandata" value="<?=$jumlah_ketersediaandata;?>" class="form-control" required>
-                                                    Data Ketersediaan Tahun<input type="text" name="data_ketersediaantahun" value="<?=$data_ketersediaantahun;?>" class="form-control" required>
-                                                    Dibangun<input type="text" name="dibangun" value="<?=$dikelola;?>" class="form-control" required>
-                                                    Dikelola<input type="text" name="dikelola" value="<?=$dikelola;?>" class="form-control" required>
-                                                    Manage Foto <input type="file" name="file" class="form-control">
-                                                    <img src="image/<?php echo $data['image'] ?>" width="120px" height="160px" />
-                                                    <br>
-                                                    <input type="hidden" name="id_pos" value="<?=$id_pos;?>">
-                                                    <br>
-                                                    <button type="submit" class="btn btn-primary" name="updatedata">Update</button>
-
-                                                    </div>
+                                                                Latitude <input type="text" name="latitude" value="<?=$latitude;?>" class="form-control" required>
+                                                                Longitude <input type="text" name="longitude" value="<?=$longitude;?>" class="form-control" required>
+                                                                Lokasi Pos <input type="text" name="lokasi_pos" value="<?=$lokasi_pos;?>" class="form-control" required>
+                                                                Sungai <input type="text" name="sungai" value="<?=$sungai;?>" class="form-control" required>
+                                                                Sub Das <input type="text" name="sub_das" value="<?=$sub_das;?>" class="form-control" required>
+                                                                Das <input type="text" name="das" value="<?=$das;?>" class="form-control" required>
+                                                                Sistem Sungai <input type="text" name="sistem_sungai" value="<?=$sistem_sungai;?>" class="form-control" required>
+                                                                Wilayah Sungai<input type="text" name="wilayah_sungai" value="<?=$wilayah_sungai;?>" class="form-control" required>
+                                                                Jenis Alat<input type="text" name="jenis_alat" value="<?=$jenis_alat;?>" class="form-control" required>
+                                                                ID Logger<input type="text" name="id_logger" value="<?=$id_logger;?>" class="form-control" required>
+                                                                ID Modem<input type="text" name="id_modem" value="<?=$id_modem;?>" class="form-control" required>                
+                                                                Proggres <input type="text" name="proggres" value="<?=$proggres;?>" class="form-control"required>
+                                                                Nama Penjaga <input type="text" name="nama_penjaga" value="<?=$nama_penjaga;?>" class="form-control" required>
+                                                                No Penjaga <input type="text" name="no_penjaga" value="<?=$no_penjaga;?>" class="form-control" required>
+                                                                Link Data <input type="text" name="link_data" value="<?=$link_data;?>" class="form-control" required>
+                                                                Link Publikasi<input type="text" name="link_publikasi" value="<?=$link_publikasi;?>" class="form-control" required>
+                                                                Tahun Dibangun <input type="text" name="tahun_dibangun" value="<?=$tahun_dibangun;?>" class="form-control" required>
+                                                                Jumlah Ketersediaan Data<input type="text" name="jumlah_ketersediaandata" value="<?=$jumlah_ketersediaandata;?>" class="form-control" required>
+                                                                Data Ketersediaan Tahun<input type="text" name="data_ketersediaantahun" value="<?=$data_ketersediaantahun;?>" class="form-control" required>
+                                                                Dibangun<input type="text" name="dibangun" value="<?=$dikelola;?>" class="form-control" required>
+                                                                Dikelola<input type="text" name="dikelola" value="<?=$dikelola;?>" class="form-control" required>
+                                                                Manage Foto <input type="file" name="file" class="form-control">
+                                                                <br>
+                                                                <img src="image/<?php echo $data['image'] ?>" width="120px" height="160px" />
+                                                                <input type="hidden" name="id_pos" value="<?=$id_pos;?>"> 
+                                                                <br>
+                                                                <button type="submit" class="btn btn-primary" name="updatedata">Update</button>
+                                                            </p>
+                                                        </div>
                                                     </form>
                                                     
                                                 </div>
