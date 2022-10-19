@@ -1,6 +1,22 @@
 <?php
 require 'function.php';
 require 'cek.php';
+
+//ambil total pos
+$get1 = mysqli_query($conn, "select * from laporan");
+$count1 = mysqli_num_rows($get1); //menghitung seluruh kolom
+
+//pos duga air
+$get2 = mysqli_query($conn, "select * from laporan where jenis_pos='Pos Duga Air'");
+$count2 = mysqli_num_rows($get2); //menghitung seluruh kolom
+
+//pos curah hujan
+$get3 = mysqli_query($conn, "select * from laporan where jenis_pos='Pos Curah Hujan'");
+$count3 = mysqli_num_rows($get3); //menghitung seluruh kolom
+
+//pos klimatologi
+$get4 = mysqli_query($conn, "select * from laporan where jenis_pos='Pos Klimatologi'");
+$count4 = mysqli_num_rows($get4); //menghitung seluruh kolom
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,10 +82,6 @@ require 'cek.php';
                             <a class="nav-link" href="index.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Insert Data
-                            </a>
-                            <a class="nav-link" href="example.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Example
                             </a>
                         </div>
                     </div>
@@ -147,38 +159,54 @@ require 'cek.php';
                             </div>
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Nama Pos</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                <div class="card-header bg-success text-white mb-4">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <i class="fa fa-list fa-4x"></i>
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="display-5"><?=$count1;?></h3>
+                                            <h6>Total Seluruh Pos</h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Jenis Pos</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                <div class="card-header bg-info text-white mb-4">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <i class="fa fa-water fa-4x"></i>
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="display-5"><?=$count2;?></h3>
+                                            <h6>Pos Duga Air</h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Progress</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                <div class="card-header bg-secondary text-white mb-4">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <i class="fa fa-tint fa-4x"></i>
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="display-5"><?=$count3;?></h3>
+                                            <h6>Pos Curah Hujan</h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Link</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                <div class="card-header bg-warning text-white mb-4">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <i class="fa fa-cloud fa-4x"></i>
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="display-5"><?=$count4;?></h3>
+                                            <h6>Pos Klimatologi</h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
