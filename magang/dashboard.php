@@ -13,11 +13,23 @@ require 'cek.php';
         <title>Dashboard - SB Admin</title>
         <link href="css/styles.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+       <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+
+       <style>
+		.leaflet-container {
+			height: 350px;
+			width: 100%;
+			max-width: 100%;
+			max-height: 100%;
+		}
+	</style>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">BBWS Pemali Juana</a>
+            <a class="navbar-brand" href="index.php"<img src="">BBWS Pemali Juana</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -55,13 +67,12 @@ require 'cek.php';
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Insert Data
                             </a>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="example.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
+                                Example
                             </a>
                         </div>
                     </div>
-
                 </nav>
             </div>
             <div id="layoutSidenav_content">
@@ -82,30 +93,53 @@ require 'cek.php';
                                         <thead>
                                             <head>
                                                 <!-- Menyisipkan library Google Maps -->
-                                                <script src="http://maps.googleapis.com/maps/api/js"></script>
+                                                <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
                                             
-                                                <script>
-                                                    // fungsi initialize untuk mempersiapkan peta
-                                                    function initialize() {
-                                                    var propertiPeta = {
-                                                        center:new google.maps.LatLng(-7.120551031933386, 110.40485678699966),
-                                                        zoom:9,
-                                                        mapTypeId:google.maps.MapTypeId.ROADMAP
-                                                    };
-                                                    
-                                                    var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
-                                                    }
-                                            
-                                                    // event jendela di-load  
-                                                    google.maps.event.addDomListener(window, 'load', initialize);
-                                                </script>
-                                              
-                                            </head>
+                                                
                                             <body>
+                                            <div id='map'></div>
+                                            <script>
+                                                var cities = L.layerGroup();
+
+                                                var mSampookong = L.marker([-6.99601, 110.3984]).bindPopup('Sam Poo Kong').addTo(cities);
+                                                var mTugumuda = L.marker([-6.98415, 110.40953]).bindPopup('Tugu Muda').addTo(cities);
+                                                var mPrpp = L.marker([-6.9607, 110.389]).bindPopup('PRPP').addTo(cities);
+                                                var mGolden = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.').addTo(cities);
+                                                var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
+                                                var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
                                             
-                                                <!-- Elemen yang akan menjadi kontainer peta -->
-                                                <div id="googleMap" style="width:100%;height:380px;"></div>
-                                              
+                                                var streets = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
+
+                                                var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                                    maxZoom: 19,
+                                                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                                                });
+
+                                                var map = L.map('map', {
+                                                    center: [-6.9990,110.4233],
+                                                    zoom: 10,
+                                                    layers: [streets, cities]
+                                                });
+
+                                                var baseLayers = {
+                                                    'OpenStreetMap': osm,
+                                                    'Streets': streets
+                                                };
+
+                                                var overlays = {
+                                                    'Cities': cities
+                                                };
+
+                                                var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
+                                                var maerakaca = L.marker([-6.9608, 110.3861]).bindPopup('Taman Maerakaca');
+                                                var rubyHill = L.marker([39.68, -105.00]).bindPopup('This is Ruby Hill Park.');
+
+                                                var parks = L.layerGroup([maerakaca, rubyHill]);
+
+                                                var satellite = L.tileLayer(mbUrl, {id: 'mapbox/satellite-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
+                                                layerControl.addBaseLayer(satellite, 'Satellite');
+                                                layerControl.addOverlay(parks, 'Parks');
+                                            </script>  
                                             </body>
                                         </tbody>
                                     </table>
