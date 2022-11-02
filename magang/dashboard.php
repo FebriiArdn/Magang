@@ -2,21 +2,8 @@
 require 'function.php';
 require 'cek.php';
 
-//ambil total pos
-$get1 = mysqli_query($conn, "select * from laporan");
-$count1 = mysqli_num_rows($get1); //menghitung seluruh kolom
 
-//pos duga air
-$get2 = mysqli_query($conn, "select * from laporan where jenis_pos='Pos Duga Air'");
-$count2 = mysqli_num_rows($get2); //menghitung seluruh kolom
 
-//pos curah hujan
-$get3 = mysqli_query($conn, "select * from laporan where jenis_pos='Pos Curah Hujan'");
-$count3 = mysqli_num_rows($get3); //menghitung seluruh kolom
-
-//pos klimatologi
-$get4 = mysqli_query($conn, "select * from laporan where jenis_pos='Pos Klimatologi'");
-$count4 = mysqli_num_rows($get4); //menghitung seluruh kolom
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,8 +18,8 @@ $count4 = mysqli_num_rows($get4); //menghitung seluruh kolom
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
        <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
-        <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+       <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
 
        <style>
 		.leaflet-container {
@@ -83,6 +70,10 @@ $count4 = mysqli_num_rows($get4); //menghitung seluruh kolom
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Insert Data
                             </a>
+                            <a class="nav-link" href="example.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Example
+                            </a>
                         </div>
                     </div>
                 </nav>
@@ -90,10 +81,7 @@ $count4 = mysqli_num_rows($get4); //menghitung seluruh kolom
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
+                        <h1 class="mt-4">Dashboard</h1> <br>
                             <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
@@ -104,53 +92,54 @@ $count4 = mysqli_num_rows($get4); //menghitung seluruh kolom
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <head>
-                                                <!-- Menyisipkan library Google Maps -->
+                                                <!-- Menyisipkan library Open Street Maps -->
                                                 <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
                                             
                                                 
                                             <body>
                                             <div id='map'></div>
                                             <script>
-                                                var cities = L.layerGroup();
+                                                
+                                                const cities = L.layerGroup();
 
                                                 var mSampookong = L.marker([-6.99601, 110.3984]).bindPopup('Sam Poo Kong').addTo(cities);
                                                 var mTugumuda = L.marker([-6.98415, 110.40953]).bindPopup('Tugu Muda').addTo(cities);
-                                                var mPrpp = L.marker([-6.9607, 110.389]).bindPopup('PRPP').addTo(cities);
-                                                var mGolden = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.').addTo(cities);
                                                 var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
                                                 var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
-                                            
+
                                                 var streets = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
 
-                                                var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                                    maxZoom: 19,
-                                                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                                                });
-
                                                 var map = L.map('map', {
-                                                    center: [-6.9990,110.4233],
+                                                    center: [-6.9973, 110.4243],
                                                     zoom: 10,
                                                     layers: [streets, cities]
                                                 });
 
+                                                
                                                 var baseLayers = {
-                                                    'OpenStreetMap': osm,
-                                                    'Streets': streets
+                                                    'Streets': streets,
                                                 };
 
                                                 var overlays = {
                                                     'Cities': cities
                                                 };
 
-                                                var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
-                                                var maerakaca = L.marker([-6.9608, 110.3861]).bindPopup('Taman Maerakaca');
-                                                var rubyHill = L.marker([39.68, -105.00]).bindPopup('This is Ruby Hill Park.');
 
-                                                var parks = L.layerGroup([maerakaca, rubyHill]);
+                                                var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
+
+                                                var parks = L.layerGroup([]);
+                                                var halo = L.layerGroup([]);
+                                                var tambah = L.layerGroup([]);
+
 
                                                 var satellite = L.tileLayer(mbUrl, {id: 'mapbox/satellite-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
                                                 layerControl.addBaseLayer(satellite, 'Satellite');
+
                                                 layerControl.addOverlay(parks, 'Parks');
+                                                layerControl.addOverlay(halo, 'Halo');
+                                                layerControl.addOverlay(tambah, 'Tambahajg');
+                                                
+
                                             </script>  
                                             </body>
                                         </tbody>
@@ -159,54 +148,38 @@ $count4 = mysqli_num_rows($get4); //menghitung seluruh kolom
                             </div>
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
-                                <div class="card-header bg-success text-white mb-4">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <i class="fa fa-list fa-4x"></i>
-                                        </div>
-                                        <div class="col">
-                                            <h3 class="display-5"><?=$count1;?></h3>
-                                            <h6>Total Seluruh Pos</h6>
-                                        </div>
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body">Nama Pos</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card-header bg-info text-white mb-4">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <i class="fa fa-water fa-4x"></i>
-                                        </div>
-                                        <div class="col">
-                                            <h3 class="display-5"><?=$count2;?></h3>
-                                            <h6>Pos Duga Air</h6>
-                                        </div>
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">Jenis Pos</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card-header bg-secondary text-white mb-4">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <i class="fa fa-tint fa-4x"></i>
-                                        </div>
-                                        <div class="col">
-                                            <h3 class="display-5"><?=$count3;?></h3>
-                                            <h6>Pos Curah Hujan</h6>
-                                        </div>
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body">Progress</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card-header bg-warning text-white mb-4">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <i class="fa fa-cloud fa-4x"></i>
-                                        </div>
-                                        <div class="col">
-                                            <h3 class="display-5"><?=$count4;?></h3>
-                                            <h6>Pos Klimatologi</h6>
-                                        </div>
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body">Link</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
