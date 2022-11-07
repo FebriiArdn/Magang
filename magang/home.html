@@ -1,55 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="hm.css">
-    <title>Hidrologi BBWS</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style2.css">
+    <title>Hidrologi</title>
 </head>
+
 <body>
-    <nav>
-        <div class="wrapper">
-            <div class="logo"> <a href="">HIDROLOGI</a></div>
-            <div class="menu">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#project">Project</a></li>
-                    <li><a href="#career">Career</a></li>
-                    <li><a href="#visimisi">Visi Misi</a></li>
-                    <li><a href="#company">Company</a></li>
+    <!---->
+    <!--Header-->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">BBWS PEMALI JUANA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="data.php">Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Peta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Publikasi</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Data Pos
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Pos Curah hujan</a></li>
+                            <li><a class="dropdown-item" href="#">Pos Duga Air</a></li>
+                            <li><a class="dropdown-item" href="#">Pos Klimatologi</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-     
-        <div class="content-slide">
-            <div class="imgslide fade">
-                <div class="numberslide">1 / 3</div>
-                <img src="image/gunug.jpg" alt="">
-                <div class="text">Pemandangan</div>
-            </div>
 
-            <div class="imgslide fade">
-                <div class="numberslide">2 / 3</div>
-                <img src="image/WhatsApp Image 2022-01-06 at 10.00.11.jpeg" alt="">
-                <div class="text">2</div>
+    <!--Hero-->
+    <section id="home" class="bg-cover hero-section" style="background-image: url(image/bumi.jpg);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="display-4">Hidrologi</h1>
+                    <p class="my-4">
+                        Hidrologi merupakan salah satu unit yang ada di Balai Besar Wilayah Sungai Pemali Juana.
+                        <br>Secara Umum Hidrologi adalah Cabang ilmu geografi
+                        yang mempelajari seputar pergerakan, <br>
+                        distribusi, dan kualitas air yang ada dibumi serta siklus hidrologi dan sumber daya air. </p>
+                </div>
             </div>
-
-            <div class="imgslide fade">
-                <div class="numberslide">3 / 3</div>
-                <img src="image/WhatsApp Image 2022-01-06 at 10.00.11.jpeg" alt="">
-                <div class="text">3</div>
-            </div>
-
-            <a class="prev">
-                onClick="nextslide(-1)">&#10094;
-            </a>
-            
-            <a class="next">
-                onClick="nextslide(1)">&#10095;
-            </a>
         </div>
-    </div>
+    </section>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    &middot;
+                    <a href="login.php">Admin</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>
